@@ -1,0 +1,57 @@
+{% extends "arinwest/base.html" %}
+{%load staticfiles %}
+{%block content%}
+    {% include "arinwest/header.html" with header_type="light" services_items=services_items %}
+         <!-- HEADER line -->
+        
+		<div class="fullscreen-bg" style="background-image: url({% static 'arinwest/img/background-58.jpg' %});">
+		    <div class="fullscreen-bg">
+            <video loop muted autoplay poster="{% static 'arinwest/img/videoframe.jpg' %}" class="fullscreen-bg__video">
+                <source src="{% static 'arinwest/video/4.avi' %}" type="video/avi">
+                <source src="{% static 'arinwest/video/3.mp4' %}" type="video/mp4">
+                <source src="{% static 'arinwest/video/5.ogv' %}" type="video/ogv">
+            </video>
+            <div class="page-height">
+                <div class="full-size-banner-entry full-size valign-middle">
+                    <div class="valign-text-wrapper text-center">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="text-animation">
+                                    <div class="project-logo"><img src="{% static 'arinwest/img/logo1.png' %}" alt=""></div>
+                                </div>
+                                <div class="empty-space col-xs-b15"></div>
+                                <div class="h2 light"><b>Arin West Studio</b></div>
+                                <div class="empty-space col-xs-b15"></div>
+                                <div class="banner-max-width">
+                                    <div class="simple-article large light transparent">{{main_text.text}}</div>
+                                </div>
+                                <div class="empty-space col-xs-b35"></div>
+                                <div class="text-animation delay-3">
+                                    <a href="#" class="button type-3 light ms_booking">записаться</a>
+                                </div>
+                                 <div class="empty-space col-xs-b35"></div>
+                                <div class="follow style-3 text-center">
+                                    <a class="entry" target="_blank" href="#"><i class="fa fa-instagram"></i></a>
+                                    <a class="entry" target="_blank" href="#"><i class="fa fa-youtube"></i></a>
+                                    <a class="entry" target="_blank" href="#"><i class="fa fa-vk"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+        </div>	
+        <!-- Видеобэкграунд конец -->
+{%endblock%}			
+        
+
+{% block script%}
+    <script src="{% static 'arinwest/js/modernizr.custom.js' %}"></script>
+    <!--script src="{% static 'arinwest/js/boxesFx.js' %}"></script>
+    <script>
+        new BoxesFx( document.getElementById( 'boxgallery' ) );
+    </script-->
+    <script type="text/javascript" src="https://w19018.yclients.com/widgetJS" charset="UTF-8"></script>
+{% endblock %}

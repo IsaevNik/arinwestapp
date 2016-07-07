@@ -1,0 +1,57 @@
+{% extends "arinwest/base.html" %}
+{%load staticfiles %}
+{%load humanize %}
+{%block content%}
+    {% include "arinwest/header.html" with header_type="" services_items=services_items %}
+        
+        
+        <!-- HEADER line -->     
+
+        <div class="container">
+            <div class="header-empty-space"></div>
+            <div class="empty-space col-xs-b35 col-sm-b40"></div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <div class="h2"><b>{{ service_choice.name }}</b></div>
+                    <div class="empty-space col-xs-b15"></div>
+                    <div class="simple-article large grey">{{ service_choice.description }}</div>
+                </div>
+            </div>
+
+            <div class="empty-space col-xs-b35 col-sm-b45 col-md-b55"></div>
+        </div>
+
+        <!-- content begin -->
+        <div id="content" class="no-bottom no-top">
+            <section>
+            	<div class="container">
+            		<div class="row">
+            			<div class="col-md-6 items-list">
+                            {% for line in service_choice.servicecoastline_set.all %}
+                				<div class="sub-item-service">
+                                    <div class="c1">{{ line.text }}</div>
+                                    <div class="c2"></div>
+                                    <div class="c3">{{line.coast | intcomma}} р</div>
+                                </div>
+                            {% endfor %}
+                            <div class="empty-space col-xs-b35"></div>
+                                <div class="text-animation delay-3 text-center">
+                                    <a href="#" class="button type-3">записаться</a>
+                                </div>
+                            <div class="empty-space col-xs-b35"></div>
+                		</div>
+            			<div class="col-xs-12 col-md-4">
+                        	<img src="{% static service_choice.img_url %}" alt="" class="img-response center-block"/>
+                		</div>
+            		</div>
+            	</div>
+            </section>
+
+        </div>
+
+        {% include "arinwest/footer.html" %}
+
+        <!-- FOOTER -->
+    {% endblock %}
+

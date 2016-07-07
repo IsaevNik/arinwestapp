@@ -1,0 +1,80 @@
+{%load staticfiles %}
+<!-- HEADER line -->
+<header class="type-4 {{header_type}} fixed">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-2">
+                {% if header_type == "light" %}
+                    <a class="logo" href="/"><img src="{% static 'arinwest/img/logo1.png' %}" alt="" /></a>  
+                {% else %}
+                    <a class="logo" href="/"><img src="{% static 'arinwest/img/logo.png' %}" alt="" /></a> 
+                {% endif %}
+            </div>
+            <div class="col-xs-6 col-sm-10 text-right">
+
+                <div class="navigation-wrapper">
+
+                    <a class="logo responsive" href="/"><img src="{% static 'arinwest/img/logo.png' %}" alt="" /></a>
+
+                    <div class="navigation-overflow">
+                        <nav class="text-left clearfix">
+                            <ul>
+                                <li>
+                                    <a href="/">Записаться</a>                                         
+                                </li>
+                                <li>
+                                    <a href="{% url 'arinwest:about' %}">О нас</a>                             
+                                </li>
+                                <li>
+                                    <a href="{% url 'arinwest:portfolio' %}">Портфолио</a>
+                                </li>
+                                <li>
+                                    <a href="#">Услуги</a>
+                                    <span class="toggle-icon"></span>
+                                    <ul>
+                                        {% for item in services_items %}
+                                        <li>
+                                            <a href="#">Arin West {{ item.filial_name }}</a>
+                                            <span class="toggle-icon"></span>
+                                            <ul>
+                                                {% for service in item.services %}
+                                                    <li><a href="{% url 'arinwest:service' service.id %}">{{service.name}}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{% url 'blog:index' %}">Блог</a>                                           
+                                </li>
+                                <li>
+                                    <a href="{% url 'arinwest:contacts' %}">Контакты</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="follow style-1">
+                        <span class="title"></span>
+                        <a class="entry" href="#"><i class="fa fa-instagram"></i></a>
+                        <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
+                        <a class="entry" href="https://vk.com/arinwest_studio"><i class="fa fa-vk"></i></a>
+                    </div>
+                    
+                </div>
+                
+                
+                <div class="hamburger-icon open-navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+               
+                
+            </div>
+        </div>
+    </div>
+            
+</header>
