@@ -1,0 +1,169 @@
+{% extends "arinwest/base.html" %}
+{%load staticfiles %}
+{% load l10n %}
+{%block content%}
+    {% include "arinwest/header.html" with header_type="" %}   
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="column-indent">
+                        <div class="header-empty-space"></div>
+                        <div class="empty-space col-xs-b55 col-sm-b60"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 text-center">
+                                <div class="h2"><b>Блог</b></div>
+                                <div class="empty-space col-xs-b15"></div>
+                                <div class="simple-article large grey text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum id metus ac tempus. Praesent ut mauris eget velit volutpat posuere</div>
+                            </div>
+                        </div>
+                        <div class="empty-space col-xs-b55 col-sm-b80"></div>
+                        <div class="swiper-container simple-slider">
+                            <div class="swiper-button-prev swiper-button hidden-xs style-2"></div>
+                            <div class="swiper-button-next swiper-button hidden-xs style-2"></div>
+                            <div class="swiper-wrapper">
+                                {% for image in article.images.all %}
+                                    <div class="swiper-slide" style="background-image: url({% static image.img_url %});"></div>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination swiper-pagination-white"></div>
+                        </div>
+
+                    </div>
+                    <div class="empty-space col-xs-b30"></div>
+                    <div class="h3 text-center"><b>{{ article.title }}</b></div>
+                    <div class="empty-space col-xs-b15"></div>
+                    <div class="simple-article small grey text-center blog-light-color">{{ article.author.name }} / {{article.pub_date|date:"F d, Y"}}</div>
+                    <div class="empty-space col-xs-b40"></div>
+                    <div class="simple-article grey">
+                        <p>{{ article.text|linebreaksbr}}</p>
+                      
+                        <!--div class="column-indent">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <img src="img/blog-detail-13.jpg" alt="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <img src="img/blog-detail-14.jpg" alt="">
+                                </div>
+                                <div class="col-xs-4">
+                                    <img src="img/blog-detail-15.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <p>Nunc a sapien ut augue dictum dignissim. Aliquam voltpat ipsum tinc,idunt pretium euismod. Nulla quis eros ac dolor rhoncus convallis eget in nisi. Quisque metus ante, consectetur eu velit vitae, pharetra ve stibulum erat. Curabitur non porttitor nulla. In maximus gravida turpis, vitae facilisis nunc hendrerit in. Cras sollicitudin quis metus sit amet porttitor</p>
+                        <br/>
+                        <br/>
+                        <p>Donec vehicula vel justo a semper. Nunc sed facilisis ante. Mauris cursus sit efficijitur venenatis. Aliquam sed lectus eu libero bibendum sagittis. Vivamus est nibh, tincidunt eu purus ut, interdum congue lacus. Qui nisque nisl massa, aliquet at lacius ac, lacinia convallis sit libero. Fusce congue risus magna, id vulputate ante dapibus sed</p>
+                        <br/>
+                        <div class="column-indent">
+                            <div class="portfolio-detail-entry">
+                                <img src="img/blog-detail-16.jpg" alt="">
+                                <div class="play-button open-overlay open-video" data-rel="2" data-src="https://www.youtube.com/embed/kQT2y3UiosQ?autoplay=1&amp;loop=1&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;color=white&amp;theme=light&amp;wmode=transparent"></div>
+                            </div>
+                        </div>
+                        <br/>
+                        <p>Nunc sed facilisis ante. Mauris cursus efficitur venenatis. Aliquam sed lectus eu libero bibendum sagittis</p-->
+                    </div>
+                    <div class="empty-space col-xs-b30"></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="h6 article-options-title"><b>ТЭГИ</b></div>
+                                {% for tag in article.tags.all %}
+                                    <a class="tag-button" href="{% url 'blog:tagfilter' tag.code %}">{{ tag.name }}</a>
+                                {% endfor %}
+                            <div class="empty-space col-xs-b20 col-sm-b0"></div>
+                        </div>
+                        <!--div class="col-sm-6 col-sm-text-right">
+                            <div class="follow style-4">
+                                <div class="h6 article-options-title"><b>SHARE</b></div>
+                                <a class="entry" href="#"><i class="fa fa-instagram"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-google-plus"></i></a>
+                                <div class="simple-article small grey article-likes-title blog-light-color"><i class="fa fa-heart"></i> <span class="number">32</span></div>
+                            </div>
+                        </div-->
+                    </div>
+                    <div class="empty-space col-xs-b55 col-sm-b60"></div>
+                    <div class="h3 text-center"><b>Похожие статьи</b></div>
+                    <div class="empty-space col-xs-b30 col-sm-b60"></div>
+                    <div class="column-indent">
+                        <div class="row">
+                            {% for item in similar_articles %}
+                                <div class="col-sm-6 col-md-4 blog-entry-clear">
+                                    <div class="blog-landing-entry-1 style-1">
+                                        <a class="mouseover" style="background-image: url({% static item.img_preview %});" href="{% url 'blog:article' item.similar_article.id %}">
+                                            <span class="mouseover-helper-icon"></span>
+                                        </a>
+                                        <div class="description">
+                                            <div class="title">
+                                                <a href="{% url 'blog:article' item.similar_article.id %}" class="h4 small blog-mouseover-2"><b>{{ item.similar_article.title }} </b></a>
+                                            </div>
+                                            <div class="empty-space col-xs-b15"></div>
+                                            <div class="simple-article grey small blog-light-color">{{ item.similar_article.author.name }} / {{item.similar_article.pub_date|date:"F d, Y"}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="empty-space col-xs-b30"></div>
+                                </div>
+                            {% endfor %}
+                            <!--div class="col-sm-6 col-md-4 blog-entry-clear">
+                                <div class="blog-landing-entry-1 style-1">
+                                    <a class="mouseover" style="background-image: url(img/blog-detail-18.jpg);" href="#">
+                                        <span class="mouseover-helper-icon"></span>
+                                    </a>
+                                    <div class="blog-icons">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="simple-article small light transparent">5 <i class="fa fa-heart-o"></i> 8 <i class="fa fa-comments-o"></i></div>
+                                            </div>
+                                            <div class="col-xs-6 col-xs-text-right">
+                                                <div class="blog-category">design</div>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="description">
+                                        <div class="title">
+                                            <a href="#" class="h4 small blog-mouseover-2"><b>QUISQUE PHARETRA DIGNISSIM EX AT ELEMENTUM</b></a>
+                                        </div>
+                                        <div class="empty-space col-xs-b15"></div>
+                                        <div class="simple-article grey small blog-light-color">Goran Ramljak / January 19, 2016</div>
+                                    </div>
+                                </div>
+                                <div class="empty-space col-xs-b30"></div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 blog-entry-clear">
+                                <div class="blog-landing-entry-1 style-1">
+                                    <a class="mouseover" style="background-image: url(img/blog-detail-19.jpg);" href="#">
+                                        <span class="mouseover-helper-icon"></span>
+                                    </a>
+                                    <div class="blog-icons">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="simple-article small light transparent">5 <i class="fa fa-heart-o"></i> 8 <i class="fa fa-comments-o"></i></div>
+                                            </div>
+                                            <div class="col-xs-6 col-xs-text-right">
+                                                <div class="blog-category">design</div>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="description">
+                                        <div class="title">
+                                            <a href="#" class="h4 small blog-mouseover-2"><b>QUISQUE PHARETRA DIGNISSIM EX AT ELEMENTUM</b></a>
+                                        </div>
+                                        <div class="empty-space col-xs-b15"></div>
+                                        <div class="simple-article grey small blog-light-color">Goran Ramljak / January 19, 2016</div>
+                                    </div>
+                                </div>
+                                <div class="empty-space col-xs-b30"></div>
+                            </div-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% include "arinwest/footer.html" %}
+    {% endblock %}
+        

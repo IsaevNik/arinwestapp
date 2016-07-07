@@ -1,0 +1,110 @@
+{% extends "arinwest/base.html" %}
+{%load staticfiles %}
+{% load l10n %}
+{%block content%}
+    {% include "arinwest/header.html" with header_type="" %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="column-indent">
+                        <div class="header-empty-space"></div>
+                        <div class="empty-space col-xs-b20 col-sm-b40"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 text-center">
+                                <div class="h2"><b>БЛОГ</b></div>
+                                <div class="empty-space col-xs-b15"></div>
+                                <div class="simple-article large grey text-center">Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст </div>
+                                <div class="empty-space col-xs-b25 col-sm-b50"></div>
+                                <ul class="list-inline tag-cloud">
+                                    {% if active_tag %}
+                                        {% for tag in tags.all %}
+                                            {% if active_tag.code == tag.code %} 
+                                                <li><a class="tag-button active" href="{% url 'blog:tagfilter' tag.code %}">{{ tag.name }}</a></li>
+                                            {% else %}
+                                                <li><a class="tag-button" href="{% url 'blog:tagfilter' tag.code %}">{{ tag.name }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for tag in tags.all %}
+                                            <li><a class="tag-button" href="{% url 'blog:tagfilter' tag.code %}">{{ tag.name }}</a></li>
+                                        {% endfor %}
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="empty-space col-xs-b25 col-sm-b50"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid"> 
+            {% for item in articles_list %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="blog-landing-entry-3 clearfix {% cycle ' ' 'new-view' %}">
+                            <div class="left">
+                                <div class="full-size mouseover valign-middle" style="background-image: url({% static item.img_preview %});">
+                                    <span class="mouseover-helper-frame"></span>
+                                    <div class="valign-text-wrapper">
+                                        <div class="align">
+                                            <!--<div class="simple-article small light transparent">5 <i class="fa fa-heart-o"></i> 8 <i class="fa fa-comments-o"></i></div>-->
+                                            <div class="empty-space col-xs-b15"></div>
+                                            <a class="h3 light blog-mouseover-1" href="{% url 'blog:article' item.article.id %}"><b>{{ item.article.title|title }}</b></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right clearfix">
+                                <div class="text">
+                                    <div class="cell-view">
+                                        <div class="simple-article large grey blog-light-color">
+                                            <div class="inline-tags">
+                                                {% for tag in item.article.tags.all %}
+                                                    <a href="{% url 'blog:tagfilter' tag.code %}">{{ tag.name|title }} </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="empty-space col-xs-b15"></div>
+                                        <div class="simple-article large grey">{{ item.text_preview}} ...</div>
+                                    </div>
+                                </div>
+                                <div class="avatar-wrapper">
+                                    <img class="avatar-entry" src="{% static  item.article.author.img_url %}" alt="" />
+                                    <div class="empty-space col-xs-b20"></div>
+                                    <div class="simple-article grey small blog-light-color">{{ item.article.author.name }}</div>
+                                </div>
+                            </div>
+                            <div class="middle-wrapper">
+                                <div class="simple-article light large">{{ item.article.pub_date|date:"d M"}}<br/>{{ item.article.pub_date|date:"Y"}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+           
+        </div>
+
+        <div class="container">
+            <div class="empty-space col-xs-b55 col-sm-b110"></div>
+            <div class="page-pagination">
+                {% if articles.has_previous %}
+                    <a href="?page={{ articles.previous_page_number }}">Предыдущая</a>
+                {% endif %}
+                {% for num in articles.paginator.page_range %}
+                    {% if num == articles.number %}
+                        <a class="active"><b>{{ num }}</b></a>
+                    {% else %}
+                        <a href="?page={{ num }}"> {{ num }}</a>
+                    {% endif %} 
+                {% endfor %}
+                {% if articles.has_next %}
+                    <a href="?page={{ articles.next_page_number }}">Следующая</a>
+                {% endif %}
+            </div>
+            <div class="empty-space col-xs-b55 col-sm-b80"></div>
+        </div>
+
+        {% include "arinwest/footer.html" %}
+    {% endblock %}
+        
