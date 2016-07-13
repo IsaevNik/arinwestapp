@@ -10,20 +10,6 @@ from django.template import RequestContext
 
 from .models import StartPage, PortfolioLevel, PortfolioItem, Service, AboutPage, Filial, StaffMember
 
-# Create your views here.
-def get_instagram():
-	pass
-	'''url = "https://api.instagram.com/v1/users/1552386467/media/recent/?access_token=1552386467.40c7dff.a1501fe9aae5493087f6aaa27b2c6678"
-	response = urllib2.urlopen(url)
-	insta_data = json.loads(response.read())
-	
-	thumbnail_data = ([{'img_url': item['images']['thumbnail']['url'], 
-		'url' : item['link']} for item in insta_data['data'] if item['attribution'] == None])
-
-	insta_img_count = AboutPage.objects.get().insta_img;
-
-	return thumbnail_data[:insta_img_count]'''
-
 
 def index(request):
 	try:
@@ -39,12 +25,10 @@ def about(request):
 	services_items = ([{'filial_name' : filial.name,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 	about_us_page = AboutPage.objects.get()
-	thumbnail_data = get_instagram()
 	filials = Filial.objects.all()
 	return render(request, 'arinwest/about.html', {'services_items' : services_items,
 												   'about_us_page' : about_us_page,
-												   'filials' : filials,
-												   'thumbnail_data' : thumbnail_data})
+												   'filials' : filials})
 
 def portfolio(request):
 	portfolio_levels = PortfolioLevel.objects.all()

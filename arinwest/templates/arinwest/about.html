@@ -128,14 +128,17 @@
                         <div class="swiper-slide {{ staff_memeber.filial.code }} staff-member">
                             <div class="team-entry">
                                 <div class="team-thumbnail-wrapper">
-                                    <a class="team-thumbnail" href="#"><img src="{% static staff_memeber.img_url %}" alt="" /></a>
+                                    <a class="team-thumbnail" href="{% firstof staff_memeber.article_url '#'%}"><img src="{% static staff_memeber.img_url %}" alt="" /></a>
                                 </div>
                                 <div class="empty-space col-xs-b20"></div>
                                 <div class="text-center">
-                                    <div class="h5"><a class="mouseover-simple" href="#"><b>{{ staff_memeber.name }}</b></a></div>
+                                    <div class="h5"><a class="mouseover-simple" href="{% firstof staff_memeber.article_url '#'%}"><b>{{ staff_memeber.name }}</b></a></div>
                                     <div class="empty-space col-xs-b5"></div>
                                     <div class="simple-article grey">
                                         {{ staff_memeber.post }}
+                                    </div>
+                                    <div class="text-animation delay-3 text-center">
+                                        <a href="#" data-url="https://w37648.yclients.com/?o=m{{staff_memeber.crm_id}}" class="button type-3 ms_booking">записаться</a>
                                     </div>
                                 </div>
                             </div>
@@ -160,4 +163,5 @@
 
     {% block script %}
     <script src="{% static 'arinwest/js/loader.js' %}"></script>
+    <script type="text/javascript" src="https://w19328.yclients.com/widgetJS" charset="UTF-8"></script>
     {% endblock %}

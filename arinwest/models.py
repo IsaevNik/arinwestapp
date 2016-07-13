@@ -138,6 +138,10 @@ class StaffMember(models.Model):
 							   max_length=200,
 							   help_text='arinwest/img/about/staff/[file_name].jpg')
 	about_page = models.ForeignKey(AboutPage, on_delete=models.CASCADE)
+	article_url = models.CharField('Ссылка запись в блоге', 
+							   max_length=50,
+							   help_text='blog/article/[article_number]',
+							   blank=True)
 	filial = models.ForeignKey(Filial, 
 								   on_delete=models.CASCADE,
 								   related_name='masters',
