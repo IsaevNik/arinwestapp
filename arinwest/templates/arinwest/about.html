@@ -107,7 +107,7 @@
                 <div class="responsive-filtration-title visible-xs"><i class="fa"></i><b><span class="text">Фильтр</span></b><i class="fa fa-angle-down"></i></div>
                 <ul class="responsive-filtration-toggle">
                     {% for filial in filials %}
-                        {% if filial.code == 'zel' %}
+                        {% if filial.code == filial_code %}
                             <li><a data-code=".{{ filial.code }}" class="active">{{ filial.name }}</a></li>
                         {% else %}
                             <li><a data-code=".{{ filial.code }}">{{ filial.name }}</a></li>
@@ -119,7 +119,7 @@
             
             <div class="empty-space col-xs-b40 col-sm-b35 col-md-b25"></div>
 
-            <div class="swiper-container" data-slides-per-view="2" data-breakpoints="1" data-xs-slides="1" data-sm-slides="2" data-md-slides="2" >
+            <div class="swiper-container" data-slides-per-view="4" data-breakpoints="1" data-xs-slides="1" data-sm-slides="2" data-md-slides="4" >
                 
                 <div class="swiper-button-prev swiper-button hidden"></div>
                 <div class="swiper-button-next swiper-button hidden"></div>
@@ -137,8 +137,9 @@
                                     <div class="simple-article grey">
                                         {{ staff_memeber.post }}
                                     </div>
+                                    <div class="empty-space col-xs-b15"></div>
                                     <div class="text-animation delay-3 text-center">
-                                        <a href="#" data-url="https://w37648.yclients.com/?o=m{{staff_memeber.crm_id}}" class="button type-3 ms_booking">записаться</a>
+                                        <a href="#" data-url="https://w19328.yclients.com/?o=m{{staff_memeber.crm_id}}" class="button type-3 ms_booking">записаться</a>
                                     </div>
                                 </div>
                             </div>

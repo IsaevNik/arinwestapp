@@ -79,11 +79,10 @@ class Filial(models.Model):
 class Service(models.Model):
 
 	class Meta:
-		verbose_name = 'Элемент раздела "Услуги"'
-		verbose_name_plural = 'Элементы раздела "Услуги"'
-	name = models.CharField('Название услуги',max_length=100)
-	description = models.TextField('Описание услуги')
-	crm_id = models.CharField('ID в системе y-clients',max_length=100, blank=True)
+		verbose_name = 'Элемент раздела "Категория услуг"'
+		verbose_name_plural = 'Элементы раздела "Категория услуг"'
+	name = models.CharField('Название категории услуги',max_length=100)
+	description = models.TextField('Описание категории услуги')
 	img_url = models.CharField('Ссылка на фотографию', 
 							   max_length=200,
 							   help_text='arinwest/img/service/[file_name].jpg')
@@ -97,10 +96,11 @@ class Service(models.Model):
 
 class ServiceCoastLine(models.Model):
 	class Meta:
-		verbose_name = 'Line text/price'
-		verbose_name_plural = 'Lines tex/price'
-	text = models.CharField('Пункт', max_length=50, help_text='Подраздел услуги')
+		verbose_name = 'Элемент раздела "Услуги"'
+		verbose_name_plural = 'Элемент раздела "Услуги"'
+	text = models.CharField('Название услуги', max_length=50, help_text='Название услуги')
 	coast = models.IntegerField('Стоимость услуги')
+	crm_id = models.CharField('ID в системе y-clients',max_length=100, blank=True)
 	service = models.ForeignKey(Service, on_delete=models.CASCADE)
 
 	def __unicode__(self):

@@ -32,13 +32,9 @@
                 				<div class="sub-item-service">
                                     <div class="c1">{{ line.text }}</div>
                                     <div class="c2"></div>
-                                    <div class="c3">{{line.coast | intcomma}} р</div>
+                                    <div class="c3">{{line.coast | intcomma}} р <a href="#" class="ms_booking" data-url="https://w19328.yclients.com/?o=s{{line.crm_id}}" title="Записаться"><i class="fa fa-edit service-booking"></i></a></div>
                                 </div>
                             {% endfor %}
-                            <div class="empty-space col-xs-b35"></div>
-                                <div class="text-animation delay-3 text-center">
-                                    <a href="#" class="button type-3">записаться</a>
-                                </div>
                             <div class="empty-space col-xs-b35"></div>
                 		</div>
             			<div class="col-xs-12 col-md-4">
@@ -53,5 +49,8 @@
         {% include "arinwest/footer.html" %}
 
         <!-- FOOTER -->
+    {% endblock %}
+    {% block script %}
+    <script type="text/javascript" src="https://w19328.yclients.com/widgetJS" charset="UTF-8"></script>
     {% endblock %}
 

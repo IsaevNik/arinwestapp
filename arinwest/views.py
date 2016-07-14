@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.core.mail import mail_managers
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.template import RequestContext
+from django.db.models import Count
 
 from .models import StartPage, PortfolioLevel, PortfolioItem, Service, AboutPage, Filial, StaffMember
 
@@ -26,8 +27,15 @@ def about(request):
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 	about_us_page = AboutPage.objects.get()
 	filials = Filial.objects.all()
+	filial_max_members = Filial.objects\
+							   .annotate(num_masters=Count('masters'))\
+							   .order_by('-num_masters')[0]
+	
+	filial_code = filial_max_members.code
+	
 	return render(request, 'arinwest/about.html', {'services_items' : services_items,
 												   'about_us_page' : about_us_page,
+												   'filial_code' : filial_code,
 												   'filials' : filials})
 
 def portfolio(request):
