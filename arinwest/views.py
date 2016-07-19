@@ -37,10 +37,16 @@ def about(request):
 												   'about_us_page' : about_us_page,
 												   'filial_code' : filial_code,
 												   'filials' : filials})
+def add_preview(url):
+	url_list = url.split('/')
+	return '/'.join((url_list[:-1])+(['preview',url_list[-1]]))
 
 def portfolio(request):
 	portfolio_levels = PortfolioLevel.objects.all()
-	portfolio_items = PortfolioItem.objects.all()
+	portfolio_queryset = PortfolioItem.objects.all()
+	portfolio_items = ([{'item': portfolio_item, 
+						 'item_preview': add_preview(portfolio_item.url_img)}
+						  for portfolio_item in portfolio_queryset ])
 	services_items = ([{'filial_name' : filial.name,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 

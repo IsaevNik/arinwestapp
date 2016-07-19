@@ -36,12 +36,12 @@
                 {% for portfolio_item in portfolio_items %}
                     <div class="sorting-item {{portfolio_item.filter_name}}">
                         <div class="homepage-portfolio-preview-1 new-animation">
-                            <a class="lightbox" href="{% static portfolio_item.url_img %}">
-                                <span class="background full-size" style="background-image: url({% static portfolio_item.url_img %});"></span>
+                            <a class="lightbox" href="{% static portfolio_item.item.url_img %}">
+                                <span class="background full-size" style="background-image: url({% static portfolio_item.item_preview %});"></span>
                                 <span class="text">
-                                    <span class="h4 light"><b>{{portfolio_item.name}}</b></span>
+                                    <span class="h4 light"><b>{{portfolio_item.item.name}}</b></span>
                                     <span class="empty-space col-xs-b15"></span>
-                                    <span class="simple-article large light transparent">{{portfolio_item.description}}</span>
+                                    <span class="simple-article large light transparent">{{portfolio_item.item.description}}</span>
                                 </span>
                             </a>
                         </div>

@@ -41,9 +41,12 @@ class PortfolioItem(models.Model):
 		verbose_name = 'Элемент портфолио'
 		verbose_name_plural = 'Элементы портфолио'
 
-	name = models.CharField('Название элемента портфолио', max_length=50)
+	name = models.CharField('Название элемента портфолио', 
+							max_length=50, 
+							blank=True)
 	description = models.CharField('Описание элемента портфолио', 
-									max_length=250)
+									max_length=250,
+									blank=True)
 	url_img = models.CharField('Ссылка на фотографию элемента портфолио', 
 								max_length=250,
 								help_text = 'arinwest/img/portfolio/[level_name]/[file_name].jpg')
@@ -52,7 +55,7 @@ class PortfolioItem(models.Model):
 									on_delete=models.CASCADE,
 									help_text='Выберите из существующих')
 	def __unicode__(self):
-		return self.name
+		return self.name or self.id
 
 class Filial(models.Model):
 	code = models.CharField('Код для фильтра (только латинские символы)',

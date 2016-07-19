@@ -25,7 +25,7 @@ class PortfolioLevelAdmin(admin.ModelAdmin):
 
 class PortfolioItemAdmin(admin.ModelAdmin):
 
-	list_display = ('name','url_img','filter_name')
+	list_display = ('__unicode__','url_img','filter_name')
 	list_filter = ['filter_name']
 
 class ServiceCoastLineInline(admin.TabularInline):
