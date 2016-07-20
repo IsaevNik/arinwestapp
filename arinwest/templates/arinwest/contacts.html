@@ -20,13 +20,15 @@
                                             <div class="empty-space col-xs-b15"></div>
 
                                             <div class="simple-article grey">
-                                                Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст.
+                                                <b>Адрес салона в Москве:</b> <br>
+                                                г. Москва, Барабанный переулок, дом 4, строение 4
                                             </div>
 
                                             <div class="empty-space col-xs-b15 col-sm-b30"></div>
 
                                             <div class="simple-article grey">
-                                                Адрес адрес адрес адрес адрес адрес адрес адрес адрес адрес.
+                                                <b>Адрес салона в Зеленограде:</b> <br>
+                                                г. Зеленоград, корпус 250
                                             </div>
 
                                             <div class="empty-space col-xs-b15 col-sm-b30"></div>
@@ -38,9 +40,10 @@
                                             <div class="empty-space col-xs-b15 col-sm-b30"></div>
 
                                             <div class="follow style-4">
-                                                <a class="entry" href="#"><i class="fa fa-instagram"></i></a>
-                                                <a class="entry" href="#"><i class="fa fa-youtube"></i></a>
-                                                <a class="entry" href="https://vk.com/arinwest_studio"><i class="fa fa-vk"></i></a>
+                                                <a class="entry" target="_blank" href="https://www.instagram.com/arinwest_studio/"><i class="fa fa-instagram"></i></a>
+                                                <a class="entry" target="_blank" href="https://www.youtube.com/channel/UCsH_01YOtsjruDJJj5-MWpw
+"><i class="fa fa-youtube"></i></a>
+                                                <a class="entry" target="_blank" href="https://vk.com/arinwest_studio"><i class="fa fa-vk"></i></a>
                                             </div>
 
                                             <div class="empty-space col-xs-b55 col-sm-b110"></div>
@@ -61,8 +64,8 @@
             <!--div id="map-canvas" class="full-width" data-lat="55.971614" data-lng="37.172656" data-zoom="14"></div-->
         </div>
         <div class="addresses-block hidden">
-            <a class="marker" data-lat="55.783613" data-lng="37.708778" data-string="Москва, Барабанный переуолок, д. 4, стр 3"></a>
-            <a class="marker" data-lat="55.971614" data-lng="37.172656" data-string="Зеленоград, корп.404"></a>
+            <a class="marker" data-lat="55.783485" data-lng="37.709158" data-string="Москва, Барабанный переуолок, д. 4, стр 3"></a>
+            <a class="marker" data-lat="56.005989" data-lng="37.2034829" data-string="Зеленоград, корп.250"></a>
         </div>
 
         <div class="container">
@@ -74,7 +77,7 @@
 
                     <div class="empty-space col-xs-b30 col-sm-b60"></div>
 
-                    <form class="contact-form" method="post" action="/sendemail">
+                    <form class="contact-form" method="POST" action="/sendemail">
                     {% csrf_token %}
                         <div class="row col-xs-b30">
                             <div class="col-sm-6 col-xs-b30 col-sm-b0">

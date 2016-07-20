@@ -29,14 +29,17 @@ ALLOWED_HOSTS = []
 
 #TEMPLATE_DEBUG = DEBUG
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 587
 EMAIL_SUBJECT_PREFIX = '[ArinWestStudio]'
-EMAIL_HOST_USER = 'isv.nikita@gmail.com'
-EMAIL_HOST_PASSWORD = 'z1z2z3z4z5z6'
+EMAIL_HOST_USER = 'hello@arinwest.ru'
+EMAIL_HOST_PASSWORD = 'MkD5Yu'
 EMAIL_USE_TLS = True
 
-MANAGERS = (('Nikita', 'isv.nikita@yandex.ru'),)
+SERVER_EMAIL = EMAIL_HOST_USER
+
+
+MANAGERS = (('Inbox', 'inbox@arinwest.ru'),)
 
 # Application definition
 

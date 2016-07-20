@@ -55,7 +55,7 @@ class PortfolioItem(models.Model):
 									on_delete=models.CASCADE,
 									help_text='Выберите из существующих')
 	def __unicode__(self):
-		return self.name or self.id
+		return self.name
 
 class Filial(models.Model):
 	code = models.CharField('Код для фильтра (только латинские символы)',
@@ -152,4 +152,3 @@ class StaffMember(models.Model):
 
 	def __unicode__(self):
 		return self.name
-

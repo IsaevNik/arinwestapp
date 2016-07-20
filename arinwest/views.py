@@ -3,7 +3,7 @@ import urllib2
 import json
 
 from django.shortcuts import render, get_object_or_404, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.core.mail import mail_managers
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.template import RequestContext

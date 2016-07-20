@@ -11,7 +11,7 @@
                 <div class="col-md-6 col-md-offset-3 text-center">
                     <div class="h2"><b>ПОРТФОЛИО</b></div>
                     <div class="empty-space col-xs-b15"></div>
-                    <div class="simple-article large grey">Текст текст текст текст текст текст текст текст текст текст</div>
+                    <div class="simple-article large grey">Здесь вы можете посмотреть на то чем мы занимаемся и чем гордимся.</div>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
             <div class="sorting-container portfolio-1">
                 <div class="grid-sizer"></div>
                 {% for portfolio_item in portfolio_items %}
-                    <div class="sorting-item {{portfolio_item.filter_name}}">
+                    <div class="sorting-item {{portfolio_item.item.filter_name}}">
                         <div class="homepage-portfolio-preview-1 new-animation">
                             <a class="lightbox" href="{% static portfolio_item.item.url_img %}">
                                 <span class="background full-size" style="background-image: url({% static portfolio_item.item_preview %});"></span>
