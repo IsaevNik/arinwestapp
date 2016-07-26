@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from blog.models import Tag
 
 # Create your models here.
 class StartPage(models.Model):
@@ -54,6 +55,10 @@ class PortfolioItem(models.Model):
 									verbose_name='Код фильтра', 
 									on_delete=models.CASCADE,
 									help_text='Выберите из существующих')
+	article_url = models.CharField('Ссылка на пост в блоге', 
+							   max_length=100,
+							   help_text='blog/article/[article_number]',
+							   blank=True)
 	def __unicode__(self):
 		return self.name
 
@@ -141,14 +146,17 @@ class StaffMember(models.Model):
 							   max_length=200,
 							   help_text='arinwest/img/about/staff/[file_name].jpg')
 	about_page = models.ForeignKey(AboutPage, on_delete=models.CASCADE)
-	article_url = models.CharField('Ссылка запись в блоге', 
-							   max_length=50,
-							   help_text='blog/article/[article_number]',
-							   blank=True)
 	filial = models.ForeignKey(Filial, 
 								   on_delete=models.CASCADE,
 								   related_name='masters',
 								   to_field='name')
+	hash_tag = models.CharField('Хэштэг в инстаграмме',max_length=100,
+											blank=True)
+	article = models.TextField('Заметка о мастере', blank=True)
+	tags = models.ManyToManyField(Tag, 
+								  related_name='masters', 
+								  verbose_name='Тэги')
+
 
 	def __unicode__(self):
 		return self.name

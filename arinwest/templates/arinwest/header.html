@@ -3,15 +3,22 @@
 <header class="type-4 {{header_type}} fixed">
     <div class="container">
         <div class="row">
+        	{% if page == "index" %}
+            <div class="col-xs-6 col-sm-2 hidden">
+            {% else %}
             <div class="col-xs-6 col-sm-2">
+            {% endif %}
                 {% if header_type == "light" %}
                     <a class="logo" href="/"><img src="{% static 'arinwest/img/logo1.png' %}" alt="" /></a>  
                 {% else %}
                     <a class="logo" href="/"><img src="{% static 'arinwest/img/logo.png' %}" alt="" /></a> 
                 {% endif %}
             </div>
+            {% if page == "index" %}
+            <div class="col-xs-12 col-sm-12 index-page-menu text-right">
+            {% else %}
             <div class="col-xs-6 col-sm-10 text-right">
-
+            {% endif %}
                 <div class="navigation-wrapper">
 
                     <a class="logo responsive" href="/"><img src="{% static 'arinwest/img/logo.png' %}" alt="" /></a>
@@ -19,8 +26,11 @@
                     <div class="navigation-overflow">
                         <nav class="text-left clearfix">
                             <ul>
+                            	<li>
+                                    <a href="/">Главная</a>                                         
+                                </li>
                                 <li>
-                                    <a href="/">Записаться</a>                                         
+                                    <a href="#" class="ms_booking">Записаться</a>                                      
                                 </li>
                                 <li>
                                     <a href="{% url 'arinwest:about' %}">О нас</a>                             

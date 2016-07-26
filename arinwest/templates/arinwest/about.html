@@ -29,33 +29,22 @@
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
-                    <div class="h2 small"><b>ПРОФЕССИОНАЛЬНО</b></div>
+                    <div class="h2 small"><b>НАША ИСТОРИЯ</b></div>
                     <div class="empty-space col-xs-b15"></div>
                     <div class="simple-article large grey">Каждый мастер в нашей студии прошел долгий путь профессионального становления прежде чем оказаться у нас. Мы понимаем насколько важно вам получить качественный сервис, поэтому прикладываем все усилия, чтобы добиться лучшего результата. </div>
                 </div>
             </div>
 
-            <div class="empty-space col-xs-b30 col-sm-b60"></div>
         </div>
-            <div class="swiper-container simple-slider">
-                <div class="swiper-button-prev swiper-button hidden-xs style-2"></div>
-                <div class="swiper-button-next swiper-button hidden-xs style-2"></div>
-                <div class="swiper-wrapper">
-                    {% for image in about_us_page.imgforslider_set.all %}
-                        <div class="swiper-slide" style="background-image: url({% static image.img_url %});"></div>
-                    {% endfor %}
-                </div>
-                <div class="swiper-pagination swiper-pagination-white"></div>
-            </div>
         <div class="container">
             <div class="empty-space col-xs-b30 col-sm-b60"></div>
 
             <div class="row col-xs-text-center col-sm-text-left">
-                <div class="col-sm-5">
-                    <div class="h3"><b>ИНДИВИДУАЛЬНО</b></div>
+                <div class="col-sm-7">
+                    <img class="img-responsive" src="{% static 'arinwest/img/about/slider/1.jpg' %}" alt=""/>
                     <div class="empty-space col-xs-b10 col-sm-b0"></div>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-5">
                     <div class="simple-article grey">
                         <p>Чтобы выглядеть красиво, мало просто следовать моде. Важно знать, что выбранный стиль подходил именно вам. Наши специалисты позаботятся о развитии особенностей вашей внешности. </p>
                     </div>
@@ -65,11 +54,11 @@
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
             <div class="row col-xs-text-center col-sm-text-left">
-                <div class="col-sm-5">
-                    <div class="h3"><b>АКТУАЛЬНО</b></div>
+                <div class="col-sm-7">
+                    <img class="img-responsive" src="{% static 'arinwest/img/about/slider/2.jpg' %}" alt=""/>
                     <div class="empty-space col-xs-b10 col-sm-b0"></div>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-5">
                     <div class="simple-article grey">
                         <p>Мода стремительно меняется с каждым днем, но мы постоянно остаемся в курсе последних тенденций. Странные, гламурные и классические прически – мы всегда знаем, что сейчас популярно. </p>
                     </div>
@@ -79,17 +68,16 @@
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
             <div class="row col-xs-text-center col-sm-text-left">
-                <div class="col-sm-5">
-                    <div class="h3"><b>ВСЁ ДЛЯ ВАС</b></div>
+                <div class="col-sm-7">
+                    <img class="img-responsive" src="{% static 'arinwest/img/about/slider/3.jpg' %}" alt=""/>
                     <div class="empty-space col-xs-b10 col-sm-b0"></div>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-5">
                     <div class="simple-article grey">
                         <p>Мы внимательно прислушиваемся к пожеланиям наших клиентов и даем профессиональные советы. Для нас важно, чтобы вы остались довольны вашим обликом, поэтому мы делимся своим опытом, чтобы сделать вас еще красивее. </p>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="container">
@@ -97,7 +85,7 @@
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
-                    <div class="h2 small"><b>НАШИ МАСТЕРА</b></div>
+                    <div class="h2 small"><b>НАША КОМАНДА</b></div>
                     <div class="empty-space col-xs-b15"></div>
                     <div class="simple-article large grey">Команда Arin West сложилась не просто так. Мы – дружная семья, каждый член которой готов прийти на помощь. Мы любим то, чем занимаемся и делимся своей страстью с вами.</div>
                 </div>
@@ -118,24 +106,25 @@
 
             
             <div class="empty-space col-xs-b40 col-sm-b35 col-md-b25"></div>
+            <div 
 
             <div class="swiper-container" data-slides-per-view="4" data-breakpoints="1" data-xs-slides="1" data-sm-slides="2" data-md-slides="4" >
                 
-                <div class="swiper-button-prev swiper-button hidden"></div>
-                <div class="swiper-button-next swiper-button hidden"></div>
+                <div class="swiper-button-prev swiper-button style-2 arrow-l hidden-xs"></div>
+                <div class="swiper-button-next swiper-button style-2 arrow-r  hidden-xs"></div>
                 <div class="swiper-wrapper">
                     {% for staff_memeber in about_us_page.staffmember_set.all %}
                         <div class="swiper-slide {{ staff_memeber.filial.code }} staff-member">
                             <div class="team-entry">
                                 <div class="team-thumbnail-wrapper">
-                                    <a class="team-thumbnail" href="{% firstof staff_memeber.article_url '#'%}"><img src="{% static staff_memeber.img_url %}" alt="" /></a>
+                                    <a class="team-thumbnail team-member" href="#" data-staff="{{staff_memeber.name}}"><img src="{% static staff_memeber.img_url %}" alt="" /></a>
                                 </div>
                                 <div class="empty-space col-xs-b20"></div>
                                 <div class="text-center">
-                                    <div class="h5"><a class="mouseover-simple" href="{% firstof staff_memeber.article_url '#'%}"><b>{{ staff_memeber.name }}</b></a></div>
+                                    <div class="h5"><a class="mouseover-simple team-member" href="#" data-staff="{{staff_memeber.name}}"><b>{{ staff_memeber.name }}</b></a></div>
                                     <div class="empty-space col-xs-b5"></div>
                                     <div class="simple-article grey">
-                                        {{ staff_memeber.post }}
+                                        <a target="_blank"  href="https://www.instagram.com/explore/tags/{{ staff_memeber.hash_tag }}/">#{{staff_memeber.hash_tag}}</a>
                                     </div>
                                     <div class="empty-space col-xs-b15"></div>
                                     <div class="text-animation delay-3 text-center">
@@ -157,6 +146,16 @@
             
                         
         </div>
+        <div class="text-popup overlay">
+            <div class="animation-wrapper full-size"></div>
+            <div class="content-wrapper full-size">
+                <div class="cell-view page-height">
+                    <div class="container staff-member-info">
+                    </div>
+                </div>
+            </div>
+            <a class="button-close"></a>
+        </div>
         {% include "arinwest/footer.html" %}
 
         <!-- FOOTER -->
@@ -165,4 +164,5 @@
     {% block script %}
     <script src="{% static 'arinwest/js/loader.js' %}"></script>
     <script type="text/javascript" src="https://w19328.yclients.com/widgetJS" charset="UTF-8"></script>
+    <script src="{% static 'arinwest/js/get_staff_member.js' %}"></script>
     {% endblock %}

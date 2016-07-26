@@ -1,0 +1,25 @@
+{%load staticfiles %}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+    	<div class="row">
+    		<div class="col-md-6">
+    			<img class="img-responsive" src="{% static staff_member.img_url %}"/>
+    		</div>
+    		<div class="col-md-6 text-center">
+    			<div class="empty-space col-xs-b15"></div>
+    			<div class="h2 small light"><b class="text-popup-title">{{staff_member.name}}</b></div>
+		        <div class="empty-space col-xs-b15"></div>
+		        <div class="simple-article light transparent text-popup-message">{{staff_member.post}}</div>
+		        <div class="empty-space col-xs-b15"></div>
+		        <div class="simple-article light">{{staff_member.article}}</div>
+		        <div class="empty-space col-xs-b20"></div>
+		        <div class="h6 article-options-title light"><b>ТЭГИ</b></div>
+                    {% for tag in staff_member.tags.all %}
+                        <a class="tag-button" href="{% url 'blog:tagfilter' tag.code %}">{{ tag.name }}</a>
+                    {% endfor %}
+                <div class="empty-space col-xs-b20 col-sm-b0"></div>
+		    </div>
+    	</div>
+        
+    </div>
+</div>

@@ -105,6 +105,19 @@ def getinsta(request):
 	thumbnail_data = thumbnail_data[:insta_img_count]
 	return render(request, 'arinwest/insta_collage.html', {'thumbnail_data' : thumbnail_data})
 
+@csrf_exempt
+def get_staff_member_info(request):
+	if request.method == 'GET':
+		raise Http404
+	name = request.POST.get('name')
+	staff_member_get = get_object_or_404(StaffMember, name=name)
+	staff_member = {"name" : staff_member_get.name,
+					"post" : staff_member_get.post,
+					"img_url" : staff_member_get.img_url,
+					"article" : staff_member_get.article,
+					"tags" :  staff_member_get.tags}
+	return render(request,'arinwest/staff_member_info.html', {'staff_member' : staff_member})
+
 def page_not_found(request):
 	services_items = ([{'filial_name' : filial.name,
 						'services' : Service.objects.filter(filial__code=filial.code)}

@@ -38,6 +38,9 @@ class Article(models.Model):
 								  related_name='articles', 
 								  verbose_name='Тэги')
 	pub_date = models.DateField('Дата публикации', auto_now_add=True)
+	youtube_url = models.CharField('Ссылка на видео', 
+							   max_length=250,
+							   blank=True)
 
 	def __unicode__(self):
 		return " ".join(self.text.split(" ")[:5]) + '...'

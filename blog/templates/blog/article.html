@@ -56,16 +56,19 @@
                         <br/>
                         <br/>
                         <p>Donec vehicula vel justo a semper. Nunc sed facilisis ante. Mauris cursus sit efficijitur venenatis. Aliquam sed lectus eu libero bibendum sagittis. Vivamus est nibh, tincidunt eu purus ut, interdum congue lacus. Qui nisque nisl massa, aliquet at lacius ac, lacinia convallis sit libero. Fusce congue risus magna, id vulputate ante dapibus sed</p>
-                        <br/>
-                        <div class="column-indent">
-                            <div class="portfolio-detail-entry">
-                                <img src="img/blog-detail-16.jpg" alt="">
-                                <div class="play-button open-overlay open-video" data-rel="2" data-src="https://www.youtube.com/embed/kQT2y3UiosQ?autoplay=1&amp;loop=1&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;color=white&amp;theme=light&amp;wmode=transparent"></div>
-                            </div>
-                        </div>
-                        <br/>
-                        <p>Nunc sed facilisis ante. Mauris cursus efficitur venenatis. Aliquam sed lectus eu libero bibendum sagittis</p-->
+                        <br/-->
+                        
                     </div>
+                    {% if article.youtube_url %}
+                    <div class="empty-space col-xs-b30"></div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 project-video">
+                            <div class="video-container">
+                                <iframe src="{{ article.youtube_url }}"></iframe>
+                            </div> 
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="empty-space col-xs-b30"></div>
                     <div class="row">
                         <div class="col-sm-6">
