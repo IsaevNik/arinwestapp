@@ -9,6 +9,7 @@ ARTICLES_ON_PAGE = 3
 # Create your views here.
 def index(request):
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)}
 						 for filial in Filial.objects.all()])
 	articles_full_list = Article.objects.order_by('-pub_date')
@@ -34,6 +35,7 @@ def index(request):
 def article(request, article_id):
 	article = get_object_or_404(Article, pk=article_id)
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)} 
 						for filial in Filial.objects.all()])
 	similar_articles_list = Article.objects.filter(
@@ -49,6 +51,7 @@ def article(request, article_id):
 
 def tagfilter(request, tag_code):
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)}
 						 for filial in Filial.objects.all()])
 	try:

@@ -35,13 +35,17 @@
                 <div class="grid-sizer"></div>
                 {% for portfolio_item in portfolio_items %}
                     <div class="sorting-item {{portfolio_item.item.filter_name}}">
-                        <div class="homepage-portfolio-preview-1 new-animation">
+                        <div class="homepage-portfolio-preview-1 new-animation text-center">
                             <a class="lightbox" href="{% static portfolio_item.item.url_img %}">
                                 <span class="background full-size" style="background-image: url({% static portfolio_item.item_preview %});"></span>
                                 <span class="text">
                                     <span class="h4 light"><b>{{portfolio_item.item.name}}</b></span>
                                     <span class="empty-space col-xs-b15"></span>
-                                    <span class="simple-article large light transparent">{{portfolio_item.item.description}}</span>
+                                    {% if portfolio_item.item.article_url%}
+                                    <span class="simple-article large light transparent "><a class="more-info" href="{{portfolio_item.item.article_url}}">Узнать подробнее о процедуре</a></span>
+                                    {% else %}
+                                    <span class="simple-article large transparent "><a class="more-info2" href="">Узнать подробнее о процедуре</a></span>
+                                    {% endif %}
                                 </span>
                             </a>
                         </div>

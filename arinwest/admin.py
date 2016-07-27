@@ -2,8 +2,8 @@
 from django.contrib import admin
 
 from .models import StartPage, PortfolioLevel, PortfolioItem, Service,\
-					ServiceCoastLine, AboutPage, ImgForSlider, StaffMember, \
-					Filial
+					ServiceSublevelLine, AboutPage, ImgForSlider, StaffMember, \
+					Filial, ServiceSublevel
 
 class StartPageAdmin(admin.ModelAdmin):
 
@@ -27,23 +27,31 @@ class PortfolioItemAdmin(admin.ModelAdmin):
 
 	list_display = ('__unicode__','url_img','filter_name')
 	list_filter = ['filter_name']
-
-class ServiceCoastLineInline(admin.TabularInline):
-	model = ServiceCoastLine
-	extra = 1
+	list_editable = ['url_img']
 
 class ServiceAdmin(admin.ModelAdmin):
 	list_display = ('name', 'filial')
-	inlines = [ServiceCoastLineInline]
 	list_filter = ['filial']
+
+class ServiceSublevelLineInline(admin.TabularInline):
+	model = ServiceSublevelLine
+	extra = 0
+
+class ServiceSublevelAdmin(admin.ModelAdmin):
+	inlines = [ServiceSublevelLineInline]
+	list_display = ('name', 'service')
+	list_filter = ['service']
+
+	def save_model(self, request, obj, form, change):
+		if len(obj.coastlines.all()):
+			obj.sublevel_type = 2
+		else:
+			obj.sublevel_type = 1
+		obj.save()
 
 class ImgForSliderInline(admin.TabularInline):
 	model = ImgForSlider
 	extra = 1
-
-'''class StaffMemberInline(admin.TabularInline):
-	model = StaffMember
-	extra = 1'''
 
 class AboutPageAdmin(admin.ModelAdmin):
 	list_display = ('__unicode__',)
@@ -70,6 +78,7 @@ admin.site.register(StartPage, StartPageAdmin)
 admin.site.register(PortfolioLevel, PortfolioLevelAdmin)
 admin.site.register(PortfolioItem, PortfolioItemAdmin)
 admin.site.register(Service, ServiceAdmin)
+admin.site.register(ServiceSublevel, ServiceSublevelAdmin)
 admin.site.register(AboutPage, AboutPageAdmin)
 admin.site.register(Filial, FilialAdmin)
 admin.site.register(StaffMember, StaffMemberAdmin)

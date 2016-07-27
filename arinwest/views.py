@@ -18,12 +18,14 @@ def index(request):
 	except StartPage.DoesNotExist:
 		main_text = {'text' : "***Выберите текст на главную***"} 
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 	return render(request, 'arinwest/index.html', {'main_text' : main_text,
 												   'services_items' : services_items})
 
 def about(request):
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 	about_us_page = AboutPage.objects.get()
 	filials = Filial.objects.all()
@@ -48,21 +50,24 @@ def portfolio(request):
 						 'item_preview': add_preview(portfolio_item.url_img)}
 						  for portfolio_item in portfolio_queryset ])
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 
 	return render(request, 'arinwest/portfolio.html', {'portfolio_levels' : portfolio_levels,
 													   'portfolio_items' : portfolio_items,
 													   'services_items' : services_items})
-def service(request, service_id):
-	service_choice = get_object_or_404(Service, pk=service_id)
+def service(request, filial_code):
+	services = Service.objects.filter(filial__code=filial_code)
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 	
-	return render(request, 'arinwest/service.html', {'service_choice': service_choice,
-												     'services_items': services_items})
+	return render(request, 'arinwest/service.html', {'services' : services,
+												     'services_items' : services_items})
 
 def contacts(request):
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 	return render(request, 'arinwest/contacts.html', {'services_items' : services_items})
 
@@ -120,6 +125,7 @@ def get_staff_member_info(request):
 
 def page_not_found(request):
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)}
 						for filial in Filial.objects.all()])
 	response = render_to_response(
@@ -136,6 +142,7 @@ def page_not_found(request):
 
 def server_error(request):
 	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)}
 						for filial in Filial.objects.all()])
 	response = render_to_response(

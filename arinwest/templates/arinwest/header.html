@@ -44,11 +44,11 @@
                                     <ul>
                                         {% for item in services_items %}
                                         <li>
-                                            <a href="#">Arin West {{ item.filial_name }}</a>
+                                            <a href="{% url 'arinwest:service' item.filial_code %}">Arin West {{ item.filial_name }}</a>
                                             <span class="toggle-icon"></span>
                                             <ul>
                                                 {% for service in item.services %}
-                                                    <li><a href="{% url 'arinwest:service' service.id %}">{{service.name}}</a></li>
+                                                    <li><a href="{% url 'arinwest:service' item.filial_code %}#{{service.code}}">{{service.name}}</a></li>
                                                 {% endfor %}
                                             </ul>
                                         </li>

@@ -90,7 +90,8 @@ class Service(models.Model):
 		verbose_name = 'Элемент раздела "Категория услуг"'
 		verbose_name_plural = 'Элементы раздела "Категория услуг"'
 	name = models.CharField('Название категории услуги',max_length=100)
-	description = models.TextField('Описание категории услуги')
+	description = models.TextField('Описание категории услуги',
+								   blank=True)
 	img_url = models.CharField('Ссылка на фотографию', 
 							   max_length=200,
 							   help_text='arinwest/img/service/[file_name].jpg')
@@ -98,18 +99,42 @@ class Service(models.Model):
 								   on_delete=models.CASCADE,
 								   related_name='services',
 								   to_field='name')
+	info = models.TextField('Информационная справка',
+							 blank=True)
+	youtube_url = models.CharField('Ссылка на видео', 
+						   			max_length=250,
+						   			blank=True)
+	code = models.CharField('Код для создания ссылки (только латинские символы)',
+							max_length=50)
 
 	def __unicode__(self):
 		return self.name
 
-class ServiceCoastLine(models.Model):
+class ServiceSublevel(models.Model):
 	class Meta:
-		verbose_name = 'Элемент раздела "Услуги"'
-		verbose_name_plural = 'Элемент раздела "Услуги"'
-	text = models.CharField('Название услуги', max_length=50, help_text='Название услуги')
-	coast = models.IntegerField('Стоимость услуги')
+		verbose_name = "Подуровень категории услуг"
+		verbose_name_plural = "Подуровни категории услуг"
+	name = models.CharField('Название подуровня',max_length=100)
+	description = models.TextField('Описание подуровня', blank=True)
 	crm_id = models.CharField('ID в системе y-clients',max_length=100, blank=True)
-	service = models.ForeignKey(Service, on_delete=models.CASCADE)
+	sublevel_type = models.IntegerField(default=1, editable=False)
+	coast = models.CharField('Стоимость',max_length=20, blank=True)
+	service = models.ForeignKey(Service, 
+								on_delete=models.CASCADE,
+								related_name='sublevels')
+	def __unicode__(self):
+		return self.name
+
+
+class ServiceSublevelLine(models.Model):
+	class Meta:
+		verbose_name = 'Элемент подуровня'
+		verbose_name_plural = 'Элементы подуровня'
+	text = models.CharField('Название услуги', max_length=50, help_text='Название услуги')
+	coast = models.CharField('Стоимость',max_length=20)
+	service_sub = models.ForeignKey(ServiceSublevel, 
+									on_delete=models.CASCADE,
+									related_name='coastlines')
 
 	def __unicode__(self):
 		return self.text

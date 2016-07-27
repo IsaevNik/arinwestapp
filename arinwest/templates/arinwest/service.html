@@ -6,46 +6,80 @@
         
         
         <!-- HEADER line -->     
+        <div class="header-empty-space"></div>
 
-        <div class="container">
-            <div class="header-empty-space"></div>
-            <div class="empty-space col-xs-b35 col-sm-b40"></div>
+        {% for service in services %}
+        <section id="{{service.code}}">
+            <div class="container">
+                
+                <div class="empty-space col-xs-b35 col-sm-b40"></div>
 
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <div class="h2"><b>{{ service_choice.name }}</b></div>
-                    <div class="empty-space col-xs-b15"></div>
-                    <div class="simple-article large grey">{{ service_choice.description }}</div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <div class="h2"><b>{{ service.name }}</b></div>
+                        <div class="empty-space col-xs-b15"></div>
+                        <div class="simple-article large grey">{{ service.description }}</div>
+                    </div>
                 </div>
+
+                <div class="empty-space col-xs-b35 col-sm-b45 col-md-b55"></div>
             </div>
 
-            <div class="empty-space col-xs-b35 col-sm-b45 col-md-b55"></div>
-        </div>
-
-        <!-- content begin -->
-        <div id="content" class="no-bottom no-top">
-            <section>
+            <!-- content begin -->
+            <div id="content" class="no-bottom no-top">
             	<div class="container">
             		<div class="row">
-            			<div class="col-md-6 items-list">
-                            {% for line in service_choice.servicecoastline_set.all %}
+            			<div class="col-md-6">
+                        {% if service.info %}
+                        <div class="simple-article grey text-center service-info">
+                            {{service.info|linebreaksbr}}
+                        </div>
+                        {% endif %}
+
+                        <div class="items-list">
+                        {% for sublevel in service.sublevels.all %}
+                            {% if sublevel.sublevel_type == 1 %}
+                                <div class="sub-item-service">
+                                    <div class="c1">{{ sublevel.name }}</div>
+                                    <div class="c2"></div>
+                                    <div class="c3">{{sublevel.coast}} р <a href="#" class="ms_booking" data-url="https://w19328.yclients.com/?o=s{{sublevel.crm_id}}" title="Записаться"><i class="fa fa-edit service-booking"></i></a></div>
+                                </div>
+                            {% else %}
+                                <div class="empty-space col-xs-b15 col-sm-b20 col-md-b25"></div>
+                                <div class="sub-item-service text-center">
+                                    <div class="c1">{{ sublevel.name }} <a href="#" class="ms_booking" data-url="https://w19328.yclients.com/?o=s{{sublevel.crm_id}}" title="Записаться"><i class="fa fa-edit service-booking"></i></a></div>
+                                </div>
+                                <div class="simple-article grey text-center">
+                                    {{sublevel.description}}
+                                </div>
+                                {% for line in sublevel.coastlines.all %}
+                                <div class="sub-item-service">
+                                    <div class="c1">{{ line.text }}</div>
+                                    <div class="c2"></div>
+                                    <div class="c3">{{line.coast}} р</div>
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+
+                        {% endfor %}
+                        </div>
+                            <!--{% for line in service_choice.servicecoastline_set.all %}
                 				<div class="sub-item-service">
                                     <div class="c1">{{ line.text }}</div>
                                     <div class="c2"></div>
                                     <div class="c3">{{line.coast | intcomma}} р <a href="#" class="ms_booking" data-url="https://w19328.yclients.com/?o=s{{line.crm_id}}" title="Записаться"><i class="fa fa-edit service-booking"></i></a></div>
                                 </div>
-                            {% endfor %}
+                            {% endfor %} -->
                             <div class="empty-space col-xs-b35"></div>
                 		</div>
             			<div class="col-xs-12 col-md-4">
-                        	<img src="{% static service_choice.img_url %}" alt="" class="img-responsive center-block"/>
+                        	<img src="{% static service.img_url %}" alt="" class="img-responsive center-block"/>
                 		</div>
             		</div>
             	</div>
-            </section>
-
-        </div>
-
+            </div>
+        </section>
+        {% endfor %}
         {% include "arinwest/footer.html" %}
 
         <!-- FOOTER -->
