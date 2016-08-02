@@ -31,6 +31,7 @@ class PortfolioLevel(models.Model):
 							unique=True)
 
 	name = models.CharField('Название раздела портфолио', max_length=50)
+	tag = models.OneToOneField(Tag, related_name="portfolio_level", null=True)
 
 	def __unicode__(self):
 		return self.code
@@ -101,8 +102,9 @@ class Service(models.Model):
 								   to_field='name')
 	info = models.TextField('Информационная справка',
 							 blank=True)
-	youtube_url = models.CharField('Ссылка на видео', 
+	article = models.CharField('Ссылка статью об услуге', 
 						   			max_length=250,
+						   			help_text='blog/article/[article_number]',
 						   			blank=True)
 	code = models.CharField('Код для создания ссылки (только латинские символы)',
 							max_length=50)

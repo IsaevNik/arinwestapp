@@ -21,7 +21,7 @@ class Tag(models.Model):
 							max_length=50,
 							primary_key=True, 
 							unique=True)
-	code = models.CharField('Код тега(для фильтра',
+	code = models.CharField('Код тега (для фильтра, только латинские символы)',
 							max_length=50)
 
 	def __unicode__(self):

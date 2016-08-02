@@ -27,7 +27,7 @@ class PortfolioItemAdmin(admin.ModelAdmin):
 
 	list_display = ('__unicode__','url_img','filter_name')
 	list_filter = ['filter_name']
-	list_editable = ['url_img']
+	list_editable = ['url_img','filter_name']
 
 class ServiceAdmin(admin.ModelAdmin):
 	list_display = ('name', 'filial')
