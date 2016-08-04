@@ -7,6 +7,18 @@
         
         <!-- HEADER line -->     
         <div class="header-empty-space"></div>
+        <div class="container">
+            <div class="swiper-container simple-slider">
+                <div class="swiper-button-prev swiper-button style-2" id="blink-arrow"></div>
+                <div class="swiper-button-next swiper-button style-2" id="blink-arrow"></div>
+                <div class="swiper-wrapper">
+                    {% for image in filial.imgs_for_slider.all %}
+                        <div class="swiper-slide" style="background-image: url({% static image.img_url %});"></div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
 
         {% for service in services %}
         <section id="{{service.code}}">
@@ -65,7 +77,7 @@
                         {% if service.article %}
                         	<div class="empty-space col-xs-b15 col-sm-b20 col-md-b25"></div>
        						<div class="simple-article text-center">
-                                <a class="service-article" href="/{{service.article}}">Кстати, у нас есть отличная статья, в которой вы можете прочитать подробности и даже посмотреть, как наши мастера воплощают в жизнь эту идею.</a>
+                                <a class="service-article" href="/{{service.article}}">{{service.article_href_text}}</a>
                             </div>
                         {% endif %}
                         </div>

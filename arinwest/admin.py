@@ -2,8 +2,8 @@
 from django.contrib import admin
 
 from .models import StartPage, PortfolioLevel, PortfolioItem, Service,\
-					ServiceSublevelLine, AboutPage, ImgForSlider, StaffMember, \
-					Filial, ServiceSublevel
+					ServiceSublevelLine, AboutPage, ImgForSliderFilial, StaffMember, \
+					Filial, ServiceSublevel, Celebrity
 
 class StartPageAdmin(admin.ModelAdmin):
 
@@ -21,7 +21,8 @@ class StartPageAdmin(admin.ModelAdmin):
 
 class PortfolioLevelAdmin(admin.ModelAdmin):
 
-	list_display = ('name','code')
+	list_display = ('name','code','numeric')
+	list_editable = ['numeric']
 
 class PortfolioItemAdmin(admin.ModelAdmin):
 
@@ -32,6 +33,7 @@ class PortfolioItemAdmin(admin.ModelAdmin):
 class ServiceAdmin(admin.ModelAdmin):
 	list_display = ('name', 'filial')
 	list_filter = ['filial']
+	save_as = True
 
 class ServiceSublevelLineInline(admin.TabularInline):
 	model = ServiceSublevelLine
@@ -49,13 +51,12 @@ class ServiceSublevelAdmin(admin.ModelAdmin):
 			obj.sublevel_type = 1
 		obj.save()
 
-class ImgForSliderInline(admin.TabularInline):
-	model = ImgForSlider
+class ImgForSliderFilialInline(admin.TabularInline):
+	model = ImgForSliderFilial
 	extra = 1
 
 class AboutPageAdmin(admin.ModelAdmin):
 	list_display = ('__unicode__',)
-	inlines = [ImgForSliderInline]
 
 	def has_add_permission(self, request):
 		num_objects = self.model.objects.count()
@@ -67,6 +68,7 @@ class AboutPageAdmin(admin.ModelAdmin):
 class FilialAdmin(admin.ModelAdmin):
 
 	list_display = ('name','code')
+	inlines = [ImgForSliderFilialInline]
 
 
 class StaffMemberAdmin(admin.ModelAdmin):
@@ -82,3 +84,4 @@ admin.site.register(ServiceSublevel, ServiceSublevelAdmin)
 admin.site.register(AboutPage, AboutPageAdmin)
 admin.site.register(Filial, FilialAdmin)
 admin.site.register(StaffMember, StaffMemberAdmin)
+admin.site.register(Celebrity)

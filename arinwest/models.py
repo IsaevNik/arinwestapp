@@ -32,6 +32,7 @@ class PortfolioLevel(models.Model):
 
 	name = models.CharField('Название раздела портфолио', max_length=50)
 	tag = models.OneToOneField(Tag, related_name="portfolio_level", null=True)
+	numeric = models.IntegerField('Порядковый номер', default=0)
 
 	def __unicode__(self):
 		return self.code
@@ -106,11 +107,13 @@ class Service(models.Model):
 						   			max_length=250,
 						   			help_text='blog/article/[article_number]',
 						   			blank=True)
+	article_href_text = models.TextField('Текст ссылки на статью в блоге',
+							 			blank=True)
 	code = models.CharField('Код для создания ссылки (только латинские символы)',
 							max_length=50)
 
 	def __unicode__(self):
-		return self.name
+		return self.name + ' ' + self.filial.name
 
 class ServiceSublevel(models.Model):
 	class Meta:
@@ -149,14 +152,14 @@ class AboutPage(models.Model):
 	def __unicode__(self):
 		return "О Нас"
 
-class ImgForSlider(models.Model):
+class ImgForSliderFilial(models.Model):
 	class Meta:
 		verbose_name = 'Фото для слайдера'
 		verbose_name_plural = 'Фото для слайдера'
-	about_page = models.ForeignKey(AboutPage, on_delete=models.CASCADE)
+	filial = models.ForeignKey(Filial, on_delete=models.CASCADE, related_name='imgs_for_slider')
 	img_url = models.CharField('Ссылка на фотографию', 
-							   max_length=200,
-							   help_text='arinwest/img/about/slider/[file_name].jpg')
+							   max_length=100,
+							   help_text='arinwest/img/filials/[filial_name]/[file_name].jpg')
 
 	def __unicode__(self):
 		return self.img_url
@@ -184,6 +187,19 @@ class StaffMember(models.Model):
 								  related_name='masters', 
 								  verbose_name='Тэги')
 
+class Celebrity(models.Model):
+	class Meta:
+		verbose_name = 'Celebrity'
+		verbose_name_plural = 'Celebrities'
+	name = models.CharField('Фамилия Имя',max_length=100)
+	post = models.CharField('Род деятельности',max_length=100)
+	img_url = models.CharField('Ссылка на фотографию', 
+							   max_length=200,
+							   help_text='arinwest/img/celebrities/[file_name].jpg')
+	article = models.TextField('Описание процедур')
+	insta_href = models.CharField('Ссылка пост в инстаграме', 
+							   		max_length=100,
+							   		blank=True)
 
 	def __unicode__(self):
 		return self.name

@@ -1,0 +1,50 @@
+{% extends "arinwest/base.html" %}
+{%load staticfiles %}
+{%block content%}
+    {% include "arinwest/header.html" with header_type="" services_items=services_items %}
+        
+        <!-- HEADER line -->     
+        <div class="container">
+            <div class="header-empty-space"></div>
+            <div class="empty-space col-xs-b20 col-sm-b40"></div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <div class="h2"><b>Наши звёздные клиенты</b></div>
+                    <div class="empty-space col-xs-b15"></div>
+                    <div class="simple-article large grey">На этой странице вы можете увидеть известных людей, которые доверяют нам работу над своим внешним видом. В их числе много наших постоянных клиентов, которые по достоинству оценили качество предоставляемых услуг. </div>
+                </div>
+            </div>
+            {%for celebrity in celebrities %}
+            <div class="empty-space col-xs-b30 col-sm-b60"></div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{celebrity.insta_href}}" target="blank"><img class="img-responsive" src="{% static celebrity.img_url %}" alt=""/></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <div class="empty-space col-xs-b15"></div>
+                            <div class="h3"><b class="text-popup-title">{{celebrity.name}}</b></div>
+                            <div class="empty-space col-xs-b15"></div>
+                            <div class="simple-article grey">{{celebrity.post}}</div>
+                            <div class="empty-space col-xs-b15"></div>
+                            <div class="simple-article">{{celebrity.article|safe}}</div>
+                            <div class="empty-space col-xs-b20 col-sm-b0"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        
+        {% include "arinwest/footer.html" %}
+
+        <!-- FOOTER -->
+    {% endblock %}
+    {% block script %}
+    <script type="text/javascript" src="https://w19328.yclients.com/widgetJS" charset="UTF-8"></script>
+    {% endblock %}
+

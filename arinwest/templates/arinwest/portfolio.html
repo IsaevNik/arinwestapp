@@ -28,9 +28,13 @@
                 <div class="empty-space col-xs-b20"></div>
                 
             </div>
+            <div id="all" class="simple-article text-center portfolio-article active">
+                <a href="{% url 'blog:index' %}">Узнать подробнее о процедурах <i class="fa fa-graduation-cap"></i></a>
+            </div>
+            
             {% for level in portfolio_levels %}
                 <div id="{{level.code}}" class="simple-article text-center portfolio-article">
-                    <a href="{% url 'blog:tagfilter' level.tag.code %}" >Узнать подробности о процедуре</a>
+                    <a href="{% url 'blog:tagfilter' level.tag.code %}" >Узнать подробности о процедуре <i class="fa fa-graduation-cap"></i></a>
                 </div>
             {% endfor %}
             <div class="empty-space col-xs-b40 col-sm-b25 col-md-b15"></div>

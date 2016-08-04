@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
         	{% if page == "index" %}
-            <div class="col-xs-6 col-sm-2 hidden">
+            <div class="col-xs-6 col-sm-1 hidden">
             {% else %}
-            <div class="col-xs-6 col-sm-2">
+            <div class="col-xs-6 col-sm-1">
             {% endif %}
                 {% if header_type == "light" %}
                     <a class="logo" href="/"><img src="{% static 'arinwest/img/logo1.png' %}" alt="" /></a>  
@@ -17,7 +17,7 @@
             {% if page == "index" %}
             <div class="col-xs-12 col-sm-12 index-page-menu text-right">
             {% else %}
-            <div class="col-xs-6 col-sm-10 text-right">
+            <div class="col-xs-6 col-sm-11 text-right">
             {% endif %}
                 <div class="navigation-wrapper">
 
@@ -56,6 +56,9 @@
                                     </ul>
                                 </li>
                                 <li>
+                                    <a href="{% url 'arinwest:celebrities' %}">Знаменитости</a>
+                                </li>
+                                <li>
                                     <a href="{% url 'blog:index' %}">Блог</a>                                           
                                 </li>
                                 <li>
@@ -66,13 +69,13 @@
                         
                     </div>
 
-                    <div class="follow style-1">
+                    <!--div class="follow style-1">
                         <span class="title"></span>
                             <a class="entry" target="_blank" href="https://www.instagram.com/arinwest_studio/"><i class="fa fa-instagram"></i></a>
                             <a class="entry" target="_blank" href="https://www.youtube.com/channel/UCsH_01YOtsjruDJJj5-MWpw
 "><i class="fa fa-youtube"></i></a>
                              <a class="entry" target="_blank" href="https://vk.com/arinwest_studio"><i class="fa fa-vk"></i></a>
-                    </div>
+                    </div-->
                     <div class="bottom-img">
                         <img class="img-responsive" src="{% static 'arinwest/img/abstact-wave.jpg' %}" alt="" />  
                     </div>

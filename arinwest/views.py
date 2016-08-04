@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.template import RequestContext
 from django.db.models import Count
 
-from .models import StartPage, PortfolioLevel, PortfolioItem, Service, AboutPage, Filial, StaffMember
+from .models import StartPage, PortfolioLevel, PortfolioItem, Service, AboutPage, Filial, StaffMember, Celebrity
 
 
 def index(request):
@@ -44,7 +44,7 @@ def add_preview(url):
 	return '/'.join((url_list[:-1])+(['preview',url_list[-1]]))
 
 def portfolio(request):
-	portfolio_levels = PortfolioLevel.objects.all()
+	portfolio_levels = PortfolioLevel.objects.order_by('numeric')
 	portfolio_queryset = PortfolioItem.objects.all()
 	portfolio_items = ([{'item': portfolio_item, 
 						 'item_preview': add_preview(portfolio_item.url_img)}
@@ -58,12 +58,21 @@ def portfolio(request):
 													   'services_items' : services_items})
 def service(request, filial_code):
 	services = Service.objects.filter(filial__code=filial_code)
+	filial_item = Filial.objects.get(code=filial_code)
 	services_items = ([{'filial_name' : filial.name,
 						'filial_code' : filial.code,
 						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
 	
 	return render(request, 'arinwest/service.html', {'services' : services,
-												     'services_items' : services_items})
+												     'services_items' : services_items,
+												     'filial' : filial_item})
+def celebrities(request):
+	celebrities = Celebrity.objects.all()
+	services_items = ([{'filial_name' : filial.name,
+						'filial_code' : filial.code,
+						'services' : Service.objects.filter(filial__code=filial.code)} for filial in Filial.objects.all()])
+	return render(request, 'arinwest/celebrities.html', {'services_items' : services_items,
+														 'celebrities' : celebrities})
 
 def contacts(request):
 	services_items = ([{'filial_name' : filial.name,

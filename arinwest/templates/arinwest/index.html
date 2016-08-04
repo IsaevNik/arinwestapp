@@ -9,7 +9,7 @@
             <video loop muted autoplay poster="{% static 'arinwest/img/videoframe.jpg' %}" class="fullscreen-bg__video">
                 <source src="{% static 'arinwest/video/4.avi' %}" type="video/avi">
                 <source src="{% static 'arinwest/video/3.mp4' %}" type="video/mp4">
-                <source src="{% static 'arinwest/video/5.ogv' %}" type="video/ogv">
+                <!--source src="{% static 'arinwest/video/5.ogv' %}" type="video/ogv"-->
             </video>
             <div class="page-height">
                 <div class="full-size-banner-entry full-size valign-middle">
@@ -17,11 +17,11 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="text-animation">
-                                    <div class="project-logo"><img src="{% static 'arinwest/img/logo1.png' %}" alt=""></div>
+                                    <div class="project-logo"><img src="{% static 'arinwest/img/main-logo.png' %}" alt=""></div>
                                 </div>
                                 <div class="empty-space col-xs-b15"></div>
                                 <div class="banner-max-width">
-                                    <div class="simple-article large light transparent">{{main_text.text|linebreaksbr}}</div>
+                                    <div class="simple-article large light transparent main-page-text">{{main_text.text|linebreaksbr}}</div>
                                 </div>
                                 <div class="empty-space col-xs-b35"></div>
                                 <div class="text-animation delay-3">
